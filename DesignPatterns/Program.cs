@@ -1,5 +1,6 @@
 ﻿
 using DesignPatterns.Creational;
+using static DesignPatterns.Creational.Prototype;
 
 class Program
 {
@@ -7,7 +8,8 @@ class Program
     {
 
         //SingletonExample();
-        BuildExample();
+        //BuildExample();
+        ProtorypeExample();
         Console.ReadLine ();
     }
 
@@ -40,6 +42,22 @@ class Program
         UserOperation userOperation = builderOperation.Build();
         Console.WriteLine(userOperation.WelcomeMessage);
         Console.WriteLine(userOperation.Permissions);
+    }
+
+    public static void ProtorypeExample()
+    {
+        Prototype.Person person = new();
+        person.Name = "TestName";
+        person.LastName = "TestLastName";
+        person.AditionalInformation = new AditionalInformation();
+        person.AditionalInformation.SetAge(26);
+
+
+        Prototype.Person personClone = person.DeepCopy();
+        personClone.AditionalInformation.SetAge(2);
+
+        if(personClone == person)
+            Console.WriteLine("Iguales");
     }
 
     #endregion
